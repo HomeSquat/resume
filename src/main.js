@@ -5,6 +5,7 @@ import store from './store';
 
 /** 引入样式初始化文件 */
 import './assets/reset.styl';
+import './assets/iconfont.styl';
 
 Vue.config.productionTip = false;
 
