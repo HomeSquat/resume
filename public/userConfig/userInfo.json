@@ -1,0 +1,30 @@
+{
+  "basic": {
+    "name": "洞洞杰",
+    "avatar": "./userConfig/user_avatar.png",
+    "job": "前端工程师",
+    "motto": "如非软弱,怎会连触手可及的幸福也要放弃?--纵力量绵薄,也要筑起通往梦想的桥梁！",
+    "skillRadar": [
+      {
+        "skillName": "HTML",
+        "value": "80"
+      },
+      {
+        "skillName": "CSS/CSS3",
+        "value": "90"
+      },
+      {
+        "skillName": "JavaScript",
+        "value": "60"
+      },
+      {
+        "skillName": "Vue",
+        "value": "70"
+      },
+      {
+        "skillName": "其他",
+        "value": "60"
+      }
+    ]
+  }
+}
