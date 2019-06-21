@@ -3,7 +3,12 @@
     <!-- S 详细信息 -->
     <div class="details">
       <div ref="detailsCenter" class="details--center wrapper">
-        <detailCenter class="content"></detailCenter>
+        <div class="content">
+          <detailCenter
+            v-if="userInfo.detail"
+            :detail="userInfo.detail">
+          </detailCenter>
+        </div>
       </div>
     </div>
     <!-- E 详细信息 -->
@@ -17,6 +22,7 @@
       <!-- / 左侧具体展示部分 -->
 
       <basicRight
+        v-if="userInfo.basic"
         :userInfoBasic="userInfo.basic"
         @changeActive="changeActive"
         class="basic--right">

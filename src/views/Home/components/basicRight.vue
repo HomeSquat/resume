@@ -2,7 +2,7 @@
   <div class="basic-right">
     <div class="user" @click="changeActive">
       <div class="user-avatar">
-        <img :src="userInfoBasic.avatar" class="user-avatar__img">
+        <img :src="'./userConfig/'+userInfoBasic.avatar" class="user-avatar__img">
       </div>
       <div class="user-name">{{userInfoBasic.name}}</div>
       <div class="user-job">{{userInfoBasic.job}}</div>
@@ -10,11 +10,11 @@
       <div ref="skillRadar" class="skill-radar"></div>
     </div>
     <div class="external-links">
-      <a href="https://blog.csdn.net/github_37710255" target="_blank">
-        <span class="external-links__item iconfont iconcsdn"></span>
-      </a>
-      <a href="http://blog.coderdong.cn/blog/" target="_blank">
-        <span class="external-links__item iconfont iconblog"></span>
+      <a
+        v-for="(link,index) in userInfoBasic.links"
+        :key="index"
+        :href="link.url" target="_blank">
+        <img :src="'./userConfig/links/'+link.icon" class="external-links__item"/>
       </a>
     </div>
  </div>
@@ -41,6 +41,9 @@ export default {
       basicActive: false,
     };
   },
+  created() {
+
+  },
   mounted() {
     this.initSkillRadar();
   },
@@ -56,6 +59,15 @@ export default {
      * 初始化技能雷达图
      */
     initSkillRadar() {
+      const indicator = [];
+      const value = [];
+      this.userInfoBasic.skillRadar.forEach((item) => {
+        indicator.push({
+          name: item.skillName,
+          max: 100,
+        });
+        value.push(item.value);
+      });
       const skillRadar = echarts.init(this.$refs.skillRadar, { width: 'auto', height: 'auto' });
       skillRadar.setOption({
         tooltip: {
@@ -83,14 +95,7 @@ export default {
               shadowBlur: 5,
             },
           },
-          indicator: [
-            { name: 'HTML', max: 100 },
-            { name: 'CSS/CSS3', max: 100 },
-            { name: 'JavaScript', max: 100 },
-            { name: 'Vue', max: 100 },
-            { name: 'Git', max: 100 },
-            { name: '其他', max: 100 },
-          ],
+          indicator,
         },
         series: [{
           type: 'radar',
@@ -106,7 +111,7 @@ export default {
           data: [
             {
               name: '技能总览',
-              value: [80, 90, 60, 80, 60, 50],
+              value,
               areaStyle: {
                 normal: {
                   opacity: 0.9,
@@ -176,8 +181,7 @@ export default {
     margin-top 20px
     text-shadow none
     .external-links__item
+      width 30px
+      height 30px
       margin 0 10px
-      font-size 30px
-      &.iconblog
-        font-size 28px
 </style>

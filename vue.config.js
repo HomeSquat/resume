@@ -10,7 +10,7 @@ module.exports = {
   outputDir: './dist', // 相当于webpack的output.path
   assetsDir: './', // 打包生成的静态资源
   indexPath: 'index.html', // 打包输出路径（相对于outputDir）
-  filenameHashing: true, // 生成的静态文件名是否有哈希值
+  filenameHashing: false, // 生成的静态文件名是否有哈希值
   lintOnSave: true, // eslint错误显示形式 boolean | 'error' ，'error'输出到浏览器遮罩中，true输出到控制台中，false不输出
   transpileDependencies: [], // Babel显式转换依赖关系的文件
   // configureWebpack: (config) => {

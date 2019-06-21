@@ -1,18 +1,88 @@
 <template>
- <div class="detail-center">
-   <h1 class="title">开始的开始</h1>
-   <div class="content">
-     <div class="content--item">
-       <h2 class="content--item__title">哈哈</h2>
-       <p class="content--item__des">有习惯喷香水、古龙水的朋友们，应该都了解气味可以制造出别人对自己的印象，人家都说嗅觉、味觉的记忆是更加深刻和长久的！微软显然也想要让大家对自家的Xbox 在玩家中有些不同的印象，这次很特别的与洗沐浴用品厂商 Lynx联手，推出「Xbox 味道」的系列产品，真的非常特别，套组中包含沐浴乳、除臭剂和身体喷雾，到底「Xbox 味道」会是怎么样呢？</p>
-     </div>
-   </div>
- </div>
+  <div class="detail-center">
+    <h1 class="title">{{detail.title}}</h1>
+
+    <!-- S 主体内容 -->
+    <div class="content">
+      <div v-if="detail.self.show" class="content--item">
+        <h2 class="content--item__title">自我介绍</h2>
+        <p v-html="detail.self.content" class="content--item__des"></p>
+      </div>
+      <!-- / 自我介绍 -->
+
+      <div v-if="detail.learning.show" class="content--item">
+        <h2 class="content--item__title">教育经历</h2>
+        <div class="content--item__timeline">
+          <div v-for="(timer,index) in detail.learning.content" :key="index" class="timeline--item">
+            <div class="timeline--item__text">
+              <span class="time">{{timer.time}}</span>
+              <span class="leavel">{{timer.leavel}}</span>
+              <span>{{timer.name}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- / 教育经历 -->
+
+      <div v-if="detail.learning.show" class="content--item">
+        <h2 class="content--item__title">工作经历</h2>
+        <div class="content--item__timeline">
+          <div v-for="(job,index) in detail.jobs.content" :key="index" class="timeline--item">
+            <div class="timeline--item__text">
+              <span class="time">{{job.time}}</span>
+              <span class="leavel-job">{{job.leavel}}</span>
+              <span>{{job.name}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- / 工作经历 -->
+
+      <div v-if="detail.project.show" class="content--item">
+        <h2 class="content--item__title">项目经验</h2>
+        <div class="content--item__project">
+          <div v-for="(project,index) in detail.project.content" :key="index" class="project--item">
+            <div class="project--item__row">
+              <span class="label">项目名称：</span>
+              <span>{{project.name}}</span>
+            </div>
+            <div class="project--item__row">
+              <span class="label">项目演示地址：</span>
+              <a :href="project.demo" target="_blank" class="link">{{project.demo}}</a>
+            </div>
+            <div class="project--item__row">
+              <span class="label">项目时间：</span>
+              <span>{{project.time}}</span>
+            </div>
+            <div class="project--item__row">
+              <div class="label">工作内容：</div>
+              <div v-html="project.work" class="value"></div>
+            </div>
+            <div class="project--item__row">
+              <div class="label">项目总结：</div>
+              <div v-html="project.summary" class="value"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- E 主体内容 -->
+
+  </div>
 </template>
 
 <script>
 export default {
   name: 'detailCenter',
+  props: {
+    detail: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+  },
   data() {
     return {
 
@@ -32,6 +102,7 @@ export default {
     letter-spacing 10px
     text-align center
   .content--item
+    margin-top 60px
     .content--item__title
       color rgb(57, 179, 215)
     .content--item__des
@@ -40,4 +111,63 @@ export default {
       letter-spacing 2px
       font-size 18px
       color #ccc
+    .content--item__timeline
+      padding-left 50px
+      .timeline--item
+        position relative
+        height 80px
+        padding-left 40px
+        padding-top 56px
+        border-left 4px solid #ccc
+        &:first-child
+          &:before
+            content ''
+            position absolute
+            left -12px
+            top 0
+            width 20px
+            height 20px
+            border-top-left-radius 8px
+            border-bottom-right-radius 8px
+            background #ccc
+            transform rotate(-45deg)
+        &:after
+          content ''
+          position absolute
+          left 4px
+          bottom 4px
+          width 20px
+          height 20px
+          border-top-left-radius 50%
+          border-top-right-radius 50%
+          border-bottom-right-radius 50%
+          background #ccc
+          transform rotate(45deg)
+        .timeline--item__text
+          .time
+            width 140px
+          .leavel-job
+            width 140px
+          .time,.leavel,.leavel-job
+            display inline-block
+            margin-right 40px
+    .content--item__project
+      padding-left 40px
+      .project--item
+        margin-bottom 20px
+        padding 20px
+        border-radius 10px
+        border 1px dashed #ccc
+        background rgba(63,63,63,.5)
+        .project--item__row
+          margin-bottom 20px
+          .label
+            display inline-block
+            width 120px
+            color rgb(57, 179, 215)
+          .value
+            padding 10px 40px 10px 120px
+          .link
+            color rgb(240, 173, 78)
+
 </style>
