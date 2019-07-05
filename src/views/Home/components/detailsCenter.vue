@@ -4,14 +4,14 @@
 
     <!-- S 主体内容 -->
     <div class="content">
-      <div v-if="detail.self.show" class="content--item">
-        <h2 class="content--item__title">自我介绍</h2>
+      <div v-if="detail.self.show" class="content--item self">
+        <h2 class="content--item__title">{{detail.self.label}}</h2>
         <p v-html="detail.self.content" class="content--item__des"></p>
       </div>
       <!-- / 自我介绍 -->
 
-      <div v-if="detail.learning.show" class="content--item">
-        <h2 class="content--item__title">教育经历</h2>
+      <div v-if="detail.learning.show" class="content--item learning">
+        <h2 class="content--item__title">{{detail.learning.label}}</h2>
         <div class="content--item__timeline">
           <div v-for="(timer,index) in detail.learning.content" :key="index" class="timeline--item">
             <div class="timeline--item__text">
@@ -24,8 +24,8 @@
       </div>
       <!-- / 教育经历 -->
 
-      <div v-if="detail.learning.show" class="content--item">
-        <h2 class="content--item__title">工作经历</h2>
+      <div v-if="detail.jobs.show" class="content--item jobs">
+        <h2 class="content--item__title">{{detail.jobs.label}}</h2>
         <div class="content--item__timeline">
           <div v-for="(job,index) in detail.jobs.content" :key="index" class="timeline--item">
             <div class="timeline--item__text">
@@ -38,8 +38,8 @@
       </div>
       <!-- / 工作经历 -->
 
-      <div v-if="detail.project.show" class="content--item">
-        <h2 class="content--item__title">项目经验</h2>
+      <div v-if="detail.project.show" class="content--item project">
+        <h2 class="content--item__title">{{detail.project.label}}</h2>
         <div class="content--item__project">
           <div v-for="(project,index) in detail.project.content" :key="index" class="project--item">
             <div class="project--item__row">
@@ -85,11 +85,25 @@ export default {
   },
   data() {
     return {
-
+      scrollList: [],
     };
   },
   components: {
 
+  },
+  mounted() {
+    const el = this.$el;
+    Object.keys(this.detail).forEach((item) => {
+      if (item !== 'title') {
+        const top = el.getElementsByClassName(item)[0].offsetTop;
+        this.scrollList.push({
+          id: item,
+          label: this.detail[item].label,
+          top,
+        });
+      }
+    });
+    this.$emit('load', this.scrollList);
   },
 };
 </script>
@@ -103,6 +117,7 @@ export default {
     text-align center
   .content--item
     margin-top 60px
+    color #ccc
     .content--item__title
       color rgb(57, 179, 215)
     .content--item__des
@@ -110,7 +125,6 @@ export default {
       line-height 24px
       letter-spacing 2px
       font-size 18px
-      color #ccc
     .content--item__timeline
       padding-left 50px
       .timeline--item

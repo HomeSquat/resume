@@ -1,12 +1,26 @@
 <template>
   <div class="home">
+
+    <div class="navigation">
+      <div v-for="(item,index) in scrollList"
+          :key="index"
+          :class="[option.colorList[index],scrollIndex === index ? 'active' : '']"
+          @click="navTo(item.top)"
+          class="nav--item">
+        <div class="icon"></div>
+        <div class="label">{{item.label}}</div>
+      </div>
+    </div>
+
     <!-- S 详细信息 -->
     <div class="details">
+      <canvas id="canvas" class="canvas"></canvas>
       <div ref="detailsCenter" class="details--center wrapper">
         <div class="content">
           <detailCenter
             v-if="userInfo.detail"
-            :detail="userInfo.detail">
+            :detail="userInfo.detail"
+            @load="load">
           </detailCenter>
         </div>
       </div>
@@ -14,8 +28,10 @@
     <!-- E 详细信息 -->
 
     <!-- S 基本信息 -->
-    <div class="basic"
-      :class="{active: option.basicActive}">
+    <div
+      ref="basic"
+      :class="{active: option.basicActive}"
+      class="basic">
       <div class="basic--left">
         左侧
       </div>
@@ -38,6 +54,7 @@
 import BScroll from 'better-scroll';
 import basicRight from './components/basicRight.vue';
 import detailCenter from './components/detailsCenter.vue';
+import './ion';
 
 export default {
   name: 'home',
@@ -48,15 +65,38 @@ export default {
   data() {
     return {
       option: {
+        scroll: null,
+        scrollY: 0,
         basicActive: false,
+        colorList: ['color1', 'color2', 'color3', 'color4'],
       },
+      scrollList: [],
+      scrollList2: [],
       userInfo: {},
     };
+  },
+  computed: {
+    scrollIndex() {
+      for (let i = 0; i < this.scrollList2.length; i++) {
+        const top1 = this.scrollList2[i].top;
+        const top2 = this.scrollList2[i + 1] ? this.scrollList2[i + 1].top : null;
+        if (this.option.scrollY >= top1 && this.option.scrollY < top2) {
+          return i;
+        }
+        if (!top2) {
+          return i - 1;
+        }
+      }
+      return 0;
+    },
   },
   created() {
     this.getUserInfo();
   },
   mounted() {
+    const width = document.body.clientWidth * 0.8;
+    // eslint-disable-next-line
+    const ion = new Ion('canvas', { pointNum: 200, canvasWidth: width });
     this.initScroll();
   },
   methods: {
@@ -70,8 +110,9 @@ export default {
      * 初始化右侧详情部分滚动列表
      */
     initScroll() {
-      const scroll = new BScroll(this.$refs.detailsCenter, {
+      this.option.scroll = new BScroll(this.$refs.detailsCenter, {
         disableMouse: true,
+        probeType: 3,
         // preventDefault: false,
         scrollbar: {
           fade: true,
@@ -82,6 +123,9 @@ export default {
           invert: false,
           easeTime: 300,
         },
+      });
+      this.option.scroll.on('scroll', (e) => {
+        this.option.scrollY = Math.abs(Math.round(e.y));
       });
     },
     /**
@@ -96,6 +140,29 @@ export default {
           console.log(error);
         });
     },
+    /**
+     * 点击右侧导航，页面滚动到对应位置
+     */
+    navTo(top) {
+      this.option.scroll.scrollTo(0, -top + 10, 300);
+    },
+    /**
+     * 详情加载完成
+     */
+    load(e) {
+      this.scrollList = e;
+      const first = [{
+        id: 'index',
+        label: 'index',
+        top: 0,
+      }];
+      this.scrollList2 = first.concat(e);
+      // this.scrollList2.unshift({
+      //   id: 'index',
+      //   label: 'index',
+      //   top: 0,
+      // });
+    },
   },
 };
 </script>
@@ -104,6 +171,39 @@ export default {
 .home
   position relative
   height 100%
+  .navigation
+    position fixed
+    top 30%
+    right 0
+    z-index 9
+    .nav--item
+      position relative
+      height 30px
+      padding 0 10px 0 40px
+      margin 10px 0
+      border-bottom-left-radius 50px
+      border-top-left-radius 50px
+      cursor pointer
+      transition all .3s
+      &.active
+        transform translate(80px,0)
+      &.color1
+        background #4cae4c
+      &.color2
+        background #39b3d7
+      &.color3
+        background #e23794
+      &.color4
+        background #f0ad4e
+      .icon
+        position absolute
+        top 0
+        left 0
+        width 20px
+        height 20px
+      .label
+        line-height 30px
+        color #fff
   .details
     width 100%
     height 100%
@@ -113,10 +213,18 @@ export default {
     // background #333
     color #fff
     overflow hidden
+    .canvas
+      position fixed
+      left 20%
+      top 0
+      z-index 1
     .details--center
+      position relative
+      z-index 9
       width 900px
       height 100%
       margin 0 auto
+      // background rgb(36,36,36)
   .basic
     display flex
     justify-content space-between
