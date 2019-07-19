@@ -116,7 +116,7 @@ export default {
         // preventDefault: false,
         scrollbar: {
           fade: true,
-          interactive: true, // 1.8.0 新增
+          interactive: false, // 1.8.0 新增
         },
         mouseWheel: {
           speed: 20,
