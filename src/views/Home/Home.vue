@@ -32,9 +32,10 @@
       ref="basic"
       :class="{active: option.basicActive}"
       class="basic">
-      <div class="basic--left">
-        左侧
-      </div>
+      <basicLeft
+        :userInfoBasic="userInfo.basic"
+        class="basic--left">
+      </basicLeft>
       <!-- / 左侧具体展示部分 -->
 
       <basicRight
@@ -53,6 +54,7 @@
 <script>
 import BScroll from 'better-scroll';
 import basicRight from './components/basicRight.vue';
+import basicLeft from './components/basicLeft.vue';
 import detailCenter from './components/detailsCenter.vue';
 import './ion';
 
@@ -60,6 +62,7 @@ export default {
   name: 'home',
   components: {
     basicRight,
+    basicLeft,
     detailCenter,
   },
   data() {
@@ -246,5 +249,6 @@ export default {
       transform translate3d(-5%,0,0)
   .basic--right
     width 21%
-
+  .basic--left
+    width 79%
 </style>

@@ -4,6 +4,59 @@
     "avatar": "user_avatar.png",
     "job": "前端工程师",
     "motto": "如非软弱,怎会连触手可及的幸福也要放弃?--纵力量绵薄,也要筑起通往梦想的桥梁！",
+    "base": [
+      {
+        "baseLabel": "姓名",
+        "baseValue": "周东杰"
+      },
+      {
+        "baseLabel": "年龄",
+        "baseValue": "25"
+      },
+      {
+        "baseLabel": "学历",
+        "baseValue": "本科(二本)"
+      },
+      {
+        "baseLabel": "工作年限",
+        "baseValue": "2年"
+      },
+      {
+        "baseLabel": "身高",
+        "baseValue": "173cm"
+      },
+      {
+        "baseLabel": "体重",
+        "baseValue": "65(kg)"
+      },
+      {
+        "baseLabel": "健康状况",
+        "baseValue": "健康"
+      },
+      {
+        "baseLabel": "电话",
+        "baseValue": "13243281583"
+      },
+      {
+        "baseLabel": "电子邮箱",
+        "baseValue": "coder_dong@qq.com"
+      }
+    ],
+    "expect":[
+      {
+        "expectLabel": "期望工作地点",
+        "expectValue": "杭州/嘉兴/桐乡"
+      },
+      {
+        "expectLabel": "期望职位",
+        "expectValue": "web前端开发"
+      },
+      {
+        "expectLabel": "期望工资",
+        "expectValue": "10k"
+      }
+    
+    ],
     "skillRadar": [
       {
         "skillName": "HTML",
