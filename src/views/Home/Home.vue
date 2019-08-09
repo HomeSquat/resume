@@ -1,6 +1,7 @@
 <template>
   <div class="home">
 
+    <!-- S 导航 -->
     <div
       :class="{active: !option.basicActive}"
       class="navigation">
@@ -13,6 +14,7 @@
         <div class="label">{{item.label}}</div>
       </div>
     </div>
+    <!-- E 导航 -->
 
     <!-- S 详细信息 -->
     <div
