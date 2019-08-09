@@ -4,6 +4,15 @@
     "avatar": "user_avatar.png",
     "job": "前端工程师",
     "motto": "如非软弱,怎会连触手可及的幸福也要放弃?--纵力量绵薄,也要筑起通往梦想的桥梁！",
+    "residence": {
+      "baiduAK": "kU9Tu9jwLbpR1HVwlV0VEPMUm0lfdcZ8",
+      "baiduStyleID": "f3b70ae2bd35b626e80bd1a38432ab86",
+      "point": {
+        "x": 120.541601,
+        "y": 30.642723
+      },
+      "text": "浙江省桐乡市梧桐街道文华路康居苑"
+    },
     "base": [
       {
         "baseLabel": "姓名",
@@ -55,7 +64,6 @@
         "expectLabel": "期望工资",
         "expectValue": "10k"
       }
-    
     ],
     "skillRadar": [
       {

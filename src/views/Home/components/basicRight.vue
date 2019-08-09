@@ -1,7 +1,7 @@
 <template>
   <div class="basic-right">
-    <div class="user" @click="changeActive">
-      <div class="user-avatar">
+    <div class="user">
+      <div class="user-avatar" @click="changeActive">
         <img :src="'./userConfig/'+userInfoBasic.avatar" class="user-avatar__img">
       </div>
       <div class="user-name">{{userInfoBasic.name}}</div>
@@ -38,7 +38,6 @@ export default {
   },
   data() {
     return {
-      basicActive: false,
     };
   },
   created() {
@@ -52,8 +51,7 @@ export default {
      * 左侧基本信息页面弹出缩进切换，触发父元素的值改变
      */
     changeActive() {
-      this.basicActive = !this.basicActive;
-      this.$emit('changeActive', this.basicActive);
+      this.$emit('changeActive');
     },
     /**
      * 初始化技能雷达图
@@ -153,12 +151,12 @@ export default {
     flex-direction column
     align-items center
     width 100% // 兼容ie
-    cursor pointer
     .user-avatar
       width 120px
       height 120px
       border-radius 120px
       overflow hidden
+      cursor pointer
       .user-avatar__img
         width 100%
         height 100%
@@ -181,7 +179,7 @@ export default {
     margin-top 20px
     text-shadow none
     .external-links__item
-      width 30px
-      height 30px
+      width 20px
+      height 20px
       margin 0 10px
 </style>

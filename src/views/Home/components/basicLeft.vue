@@ -18,13 +18,16 @@
     </ul>
     <!-- <baidu-map class="map" style="width:500px;height:700px">
     </baidu-map> -->
-    <div ref="container" class="map"></div>
+    <div class="map">
+      <div ref="container"></div>
+    </div>
   </div>
  </div>
 </template>
 
 <script>
-import loadBMap from '../loadMap.js';
+import { userInfo } from 'os';
+import loadBMap from '../loadMap';
 
 export default {
   name: '',
@@ -42,35 +45,46 @@ export default {
     };
   },
   created() {
-    this.initMap();
+    this.initMap(
+      this.userInfoBasic.residence.baiduAK,
+      this.userInfoBasic.residence.baiduStyleID,
+      { x: this.userInfoBasic.residence.point.x, y: this.userInfoBasic.residence.point.y },
+      this.userInfoBasic.residence.text,
+    );
   },
   mounted() {
     this.$nextTick(() => {
-      console.log(this.$refs.userInfo);
-      console.log(this.$refs.userInfo.clientHeight);
-      console.log(this.$refs.right.clientHeight);
-      console.log(this.$refs.right.clientHeight);
-      this.$refs.container.style.height = `${this.$refs.right.clientHeight - this.$refs.userInfo.clientHeight - 40}px`;
+      this.$refs.container.style.height = `${this.$refs.right.clientHeight - this.$refs.userInfo.clientHeight - 70}px`;
     });
   },
   components: {
 
   },
   methods: {
-    initMap() {
+    initMap(AK, styleID, p, residence) {
       /* eslint-disable */
-      loadBMap('kU9Tu9jwLbpR1HVwlV0VEPMUm0lfdcZ8')
+      loadBMap(AK)
         .then(() => {
           // 百度地图API功能
+          let point = new BMap.Point(p.x,p.y); // 当前居住地坐标点
+          let marker = new BMap.Marker(point); // 标注
+          let opts = {
+            width : 150,     // 信息窗口宽度
+            height: 80,     // 信息窗口高度
+            title : "现居地:" , // 信息窗口标题
+          }
+          var infoWindow = new BMap.InfoWindow(residence, opts);  // 创建信息窗口对象
           this.myMap = new BMap.Map(this.$refs.container); // 创建Map实例
-          this.myMap.centerAndZoom(new BMap.Point(120.541601,30.642723), 13); // 初始化地图,设置中心点坐标和地图级别
-          // 添加地图类型控件
-          this.myMap.addControl(
-            new BMap.MapTypeControl({
-              mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP],
-            }),
-          );
-          // this.myMap.setCurrentCity('杭州'); // 设置地图显示的城市 此项是必须设置的
+          this.myMap.centerAndZoom(point, 13); // 初始化地图,设置中心点坐标和地图级别
+          this.myMap.addOverlay(marker)
+          this.myMap.setMapStyleV2({
+            styleId: styleID
+          });
+          
+          this.myMap.openInfoWindow(infoWindow,point); //开启信息窗口
+          marker.addEventListener("click", ()=>{
+            this.myMap.openInfoWindow(infoWindow,point); //开启信息窗口
+          });
           this.myMap.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
         })
         .catch((err) => {

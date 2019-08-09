@@ -1,7 +1,9 @@
 <template>
   <div class="home">
 
-    <div class="navigation">
+    <div
+      :class="{active: !option.basicActive}"
+      class="navigation">
       <div v-for="(item,index) in scrollList"
           :key="index"
           :class="[option.colorList[index],scrollIndex === index ? 'active' : '']"
@@ -13,7 +15,9 @@
     </div>
 
     <!-- S 详细信息 -->
-    <div class="details">
+    <div
+      @click="option.basicActive = false"
+      class="details">
       <canvas id="canvas" class="canvas"></canvas>
       <div ref="detailsCenter" class="details--center wrapper">
         <div class="content">
@@ -33,6 +37,7 @@
       :class="{active: option.basicActive}"
       class="basic">
       <basicLeft
+        v-if="userInfo.basic"
         :userInfoBasic="userInfo.basic"
         class="basic--left">
       </basicLeft>
@@ -106,8 +111,8 @@ export default {
     /**
      * 左侧基本信息页面弹出缩进切换
      */
-    changeActive(flag) {
-      this.option.basicActive = flag;
+    changeActive() {
+      this.option.basicActive = !this.option.basicActive;
     },
     /**
      * 初始化右侧详情部分滚动列表
@@ -178,7 +183,12 @@ export default {
     position fixed
     top 30%
     right 0
+    transform translate3d(100%,0,0)
     z-index 9
+    transition all .3s .2s
+    &.active{
+      transform translate3d(0,0,0)
+    }
     .nav--item
       position relative
       height 30px
