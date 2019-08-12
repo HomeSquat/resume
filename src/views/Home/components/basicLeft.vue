@@ -1,7 +1,7 @@
 <template>
  <div class="basic-left">
   <div class="left">
-
+  <accordion labelHeight="50" height="500" :list="accordionList"></accordion>
   </div>
   <div ref="right" class="right">
     <ul ref="userInfo" class="user--info">
@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import { userInfo } from 'os';
 import loadBMap from '../loadMap';
+import accordion from '@/components/accordion.vue';
 
 export default {
   name: '',
@@ -42,6 +42,20 @@ export default {
   data() {
     return {
       myMap: null,
+      accordionList: [
+        {
+          label: '手风琴一',
+          content: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+        },
+        {
+          label: '手风琴二',
+          content: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+        },
+        {
+          label: '手风琴三',
+          content: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+        },
+      ],
     };
   },
   created() {
@@ -58,7 +72,7 @@ export default {
     });
   },
   components: {
-
+    accordion,
   },
   methods: {
     initMap(AK, styleID, p, residence) {

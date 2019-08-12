@@ -87,6 +87,7 @@ export default {
   },
   computed: {
     scrollIndex() {
+      // eslint-disable-next-line
       for (let i = 0; i < this.scrollList2.length; i++) {
         const top1 = this.scrollList2[i].top;
         const top2 = this.scrollList2[i + 1] ? this.scrollList2[i + 1].top : null;
