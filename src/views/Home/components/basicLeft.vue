@@ -1,7 +1,11 @@
 <template>
  <div class="basic-left">
-  <div class="left">
-  <accordion labelHeight="50" height="500" :list="accordionList"></accordion>
+  <div ref="left" class="left">
+    <accordion
+      v-if="accordionHeight !==0"
+      :height="accordionHeight"
+      :list="accordionList"
+      labelHeight="50"></accordion>
   </div>
   <div ref="right" class="right">
     <ul ref="userInfo" class="user--info">
@@ -35,13 +39,15 @@ export default {
     userInfoBasic: {
       type: Object,
       default() {
-        return {};
+        return {
+        };
       },
     },
   },
   data() {
     return {
       myMap: null,
+      accordionHeight: 0,
       accordionList: [
         {
           label: '手风琴一',
@@ -68,6 +74,8 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+      this.accordionHeight = this.$refs.left.clientHeight;
+      console.log(this.accordionHeight);
       this.$refs.container.style.height = `${this.$refs.right.clientHeight - this.$refs.userInfo.clientHeight - 70}px`;
     });
   },

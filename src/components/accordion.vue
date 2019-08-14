@@ -8,7 +8,10 @@
     <label
       @click="check(index)"
       :style="{height: labelHeight+'px',lineHeight: labelHeight+'px'}"
-      class="label" >{{accdionItem.label}}</label>
+      class="label" >
+        <span>{{accdionItem.label}}</span>
+        <span :class="index == currentIndexTemp ? 'active':''" class="icon iconfont iconjiantou"></span>
+      </label>
     <div
       :style="{height: accdionItem.contentHeight+'px'}"
       class="content">
@@ -46,19 +49,7 @@ export default {
       default() {
         return [
           {
-            background: '#4cae4c',
-            color: '#fff',
-          },
-          {
-            background: '#39b3d7',
-            color: '#fff',
-          },
-          {
-            background: '#e23794',
-            color: '#fff',
-          },
-          {
-            background: '#f0ad4e',
+            background: 'rgba(4, 75, 190,.2)',
             color: '#fff',
           },
         ];
@@ -70,9 +61,6 @@ export default {
       accordionList: [],
       contentHeight: Number(this.height) - Number(this.labelHeight) * this.list.length,
       currentIndexTemp: this.currentIndex,
-      textHeight1: '200px',
-      textHeight2: '0',
-      textHeight3: '0',
     };
   },
   created() {
@@ -114,10 +102,23 @@ export default {
 <style scoped lang="stylus">
 .accordion
   .label
+    position relative
     display block
+    box-sizing border-box
     width 100%
+    padding-left 10px
+    box-shadow 0 -1px 3px 0px rgba(0,0,0,.2)
+    cursor pointer
+    .icon
+      position absolute
+      top 50%
+      right 20px
+      transform translateY(-50%) rotate3d(0,0,1,-90deg)
+      transition all .3s 
+      &.active
+        transform translateY(-50%) rotate3d(0,0,1,0deg)
   .content
-    padding-left 20px
+    padding 0 20px
     overflow hidden
     transition height .3s
 </style>
