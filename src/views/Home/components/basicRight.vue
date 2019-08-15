@@ -59,7 +59,7 @@ export default {
     initSkillRadar() {
       const indicator = [];
       const value = [];
-      this.userInfoBasic.skillRadar.forEach((item) => {
+      this.userInfoBasic.skill.radar.forEach((item) => {
         indicator.push({
           name: item.skillName,
           max: 100,

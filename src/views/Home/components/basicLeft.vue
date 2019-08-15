@@ -4,7 +4,7 @@
     <accordion
       v-if="accordionHeight !==0"
       :height="accordionHeight"
-      :list="accordionList"
+      :list="userInfoBasic.skill.accordion"
       labelHeight="50"></accordion>
   </div>
   <div ref="right" class="right">
@@ -48,20 +48,6 @@ export default {
     return {
       myMap: null,
       accordionHeight: 0,
-      accordionList: [
-        {
-          label: '手风琴一',
-          content: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
-        },
-        {
-          label: '手风琴二',
-          content: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
-        },
-        {
-          label: '手风琴三',
-          content: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
-        },
-      ],
     };
   },
   created() {
@@ -75,7 +61,6 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.accordionHeight = this.$refs.left.clientHeight;
-      console.log(this.accordionHeight);
       this.$refs.container.style.height = `${this.$refs.right.clientHeight - this.$refs.userInfo.clientHeight - 70}px`;
     });
   },

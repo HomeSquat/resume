@@ -10,12 +10,14 @@
       :style="{height: labelHeight+'px',lineHeight: labelHeight+'px'}"
       class="label" >
         <span>{{accdionItem.label}}</span>
-        <span :class="index == currentIndexTemp ? 'active':''" class="icon iconfont iconjiantou"></span>
+        <span
+          :class="{active: currentIndexTemp == index}"
+          class="icon iconfont iconjiantou"></span>
       </label>
     <div
       :style="{height: accdionItem.contentHeight+'px'}"
       class="content">
-      <div v-html="accdionItem.content"></div>
+      <div v-html="accdionItem.content" class="content-html"></div>
     </div>
   </li>
  </ul>
@@ -49,7 +51,7 @@ export default {
       default() {
         return [
           {
-            background: 'rgba(4, 75, 190,.2)',
+            background: 'rgba(114, 172, 209,.2)',
             color: '#fff',
           },
         ];
@@ -106,19 +108,22 @@ export default {
     display block
     box-sizing border-box
     width 100%
-    padding-left 10px
-    box-shadow 0 -1px 3px 0px rgba(0,0,0,.2)
+    padding-left 20px
+    font-weight bold
+    box-shadow 0 -2px 3px 0px rgba(0,0,0,.2)
     cursor pointer
     .icon
       position absolute
       top 50%
       right 20px
       transform translateY(-50%) rotate3d(0,0,1,-90deg)
-      transition all .3s 
+      transition all .3s
       &.active
         transform translateY(-50%) rotate3d(0,0,1,0deg)
   .content
-    padding 0 20px
+    padding 0 40px
     overflow hidden
     transition height .3s
+    .content-html
+      padding 20px 0
 </style>

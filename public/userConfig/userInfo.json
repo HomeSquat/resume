@@ -65,28 +65,60 @@
         "expectValue": "10k"
       }
     ],
-    "skillRadar": [
-      {
-        "skillName": "HTML",
-        "value": "80"
-      },
-      {
-        "skillName": "CSS/CSS3",
-        "value": "90"
-      },
-      {
-        "skillName": "JavaScript",
-        "value": "60"
-      },
-      {
-        "skillName": "Vue",
-        "value": "70"
-      },
-      {
-        "skillName": "其他",
-        "value": "60"
-      }
-    ],
+    "skill": {
+      "radar": [
+        {
+          "skillName": "HTML",
+          "value": "80"
+        },
+        {
+          "skillName": "CSS/CSS3",
+          "value": "90"
+        },
+        {
+          "skillName": "JavaScript",
+          "value": "60"
+        },
+        {
+          "skillName": "Vue",
+          "value": "70"
+        },
+        {
+          "skillName": "其他",
+          "value": "60"
+        }
+      ],
+      "accordion": [
+        {
+          "label": "HTML/HTML5",
+          "content": "<style>.html-ul-li{height:40px;line-height:40px}</style><p>熟练运用</p><ul> <li class='html-ul-li'>1.根据设计稿熟练编写适当的页面布局</li> <li class='html-ul-li'>2.有组件化/模块化实践经验，对代码的复用性有自己的见解</li> <li class='html-ul-li'>3.了解HTML5新增标签和特性</li> <li class='html-ul-li'>4.了解部分浏览器之间标签的呈现差别</li> </ul>"
+        },
+        {
+          "label": "CSS/CSS3",
+          "content": "<style>.css-ul-li{height:40px;line-height:40px}</style><p>熟练运用</p><ul> <li class='css-ul-li'>1.熟练运用CSS及CSS3新增属性还原设计稿，一般还原度在95%左右</li> <li class='css-ul-li'>2.能够结合HTML和javaScript实现部分结构的组件化开发</li> <li class='css-ul-li'>3.熟练运用CSS属性完成一些简单图形绘制</li> <li class='css-ul-li'>4.熟练使用CSS实现页面简单交互效果</li> </ul>"
+        },
+        {
+          "label": "javaScript",
+          "content": "<style>.js-ul-li{height:40px;line-height:40px}</style><p>基本运用</p><ul> <li class='js-ul-li'>1.掌握javaScript基本知识，能够解决项目中绝大部分逻辑及数据处理</li> <li class='js-ul-li'>2.能够开发简单的组件化程序</li> <li class='js-ul-li'>3.掌握第三方javaScript库，例如：jQuery</li> <li class='js-ul-li'>4.了解ES6、ES7部分新特性，并在实际项目中使用</li> </ul>"
+        },
+        {
+          "label": "Vue/React/Angular",
+          "content": "<style>.vue-ul-li{height:40px;line-height:40px}</style><p>基本掌握</p><ul> <li class='vue-ul-li'>1.熟悉Vue.js,并在实际项目中使用Vue.js进行开发</li> <li class='vue-ul-li'>2.熟练使用第三方脚手架vue-cli,并在实际项目中使用</li> <li class='vue-ul-li'>3.了解并学习过React及Angular,知道他们的语法及原理，但没在实际项目中运用</li> </ul>"
+        },
+        {
+          "label": "微信小程序",
+          "content": "<style>.weixin-ul-li{height:40px;line-height:40px}</style><p>基本掌握</p><ul> <li class='weixin-ul-li'>1.熟悉原生小程序语法，并有实际开发经验</li> <li class='weixin-ul-li'>2.能够开发基于小程序的组件，有实际组件上传到npm</li> <li class='weixin-ul-li'>3.能够对现有程序进行代码优化</li> </ul>"
+        },
+        {
+          "label": "WebPack",
+          "content": "<style>.webpack-ul-li{height:40px;line-height:40px}</style><p>了解</p><ul> <li class='webpack-ul-li'>1.能够根据官方文档对项目的webpack进行简单配置</li> </ul>"
+        },
+        {
+          "label": "其他",
+          "content": "<style>.more-ul-li{height:40px;line-height:40px}</style><ul> <li class='more-ul-li'>1.能够使用git进行团队化项目开发</li> <li class='more-ul-li'>2.了解类似ThinkPHP的MVC后端框架</li> <li class='more-ul-li'>3.了解数据库设计及SQL语法</li> <li class='more-ul-li'>4.会使用Photoshop设计简单的设计稿和图片处理</li> <li class='more-ul-li'>5.非专业的服务器管理技能</li> </ul>"
+        }
+      ]
+    },
     "links": [
       {
         "icon": "csdn.png",
