@@ -1,8 +1,14 @@
 <template>
   <div class="basic-right">
     <div class="user">
-      <div class="user-avatar" @click="changeActive">
-        <img :src="'./userConfig/'+userInfoBasic.avatar" class="user-avatar__img">
+      <div class="user-avatar-box">
+        <div class="user-avatar" @click="changeActive">
+          <img :src="'./userConfig/'+userInfoBasic.avatar" class="user-avatar__img">
+        </div>
+        <div v-if="isShowTip" class="tip">
+          <span class="icon iconfont iconshouzhi"></span>
+          <span>点击头像查看我更多信息</span>
+        </div>
       </div>
       <div class="user-name">{{userInfoBasic.name}}</div>
       <div class="user-job">{{userInfoBasic.job}}</div>
@@ -38,10 +44,12 @@ export default {
   },
   data() {
     return {
+      isShowTip: false,
     };
   },
   created() {
-
+    const isShwoTip = JSON.parse(localStorage.getItem('isShowTip'));
+    this.isShowTip = isShwoTip === null ? true : isShwoTip;
   },
   mounted() {
     this.initSkillRadar();
@@ -51,6 +59,10 @@ export default {
      * 左侧基本信息页面弹出缩进切换，触发父元素的值改变
      */
     changeActive() {
+      if (this.isShowTip) {
+        this.isShowTip = false;
+        localStorage.setItem('isShowTip', false);
+      }
       this.$emit('changeActive');
     },
     /**
@@ -151,15 +163,40 @@ export default {
     flex-direction column
     align-items center
     width 100% // 兼容ie
-    .user-avatar
-      width 120px
-      height 120px
-      border-radius 120px
-      overflow hidden
-      cursor pointer
-      .user-avatar__img
-        width 100%
-        height 100%
+    .user-avatar-box
+      position relative
+      .user-avatar
+        width 120px
+        height 120px
+        border-radius 120px
+        overflow hidden
+        cursor pointer
+        .user-avatar__img
+          width 100%
+          height 100%
+      .tip
+        position absolute
+        top 50%
+        right -160px
+        transform translateY(-50%)
+        width 140px
+        padding 5px 10px
+        border-radius 4px
+        background rgba(255,255,255,.2)
+        animation shake .3s infinite alternate
+        // transition all .3s
+        &:after
+          content ''
+          position absolute
+          top 50%
+          left -16px
+          transform translateY(-50%)
+          width 0
+          height 0
+          border 8px solid transparent
+          border-right-color rgba(255,255,255,.2)
+        .icon
+          margin-right 10px
     .user-name
       margin 20px 0
       font-size 24px
@@ -182,4 +219,19 @@ export default {
       width 20px
       height 20px
       margin 0 10px
+@keyframs shake
+  0%
+    transform translate3d(0,-50%,0)
+  100%
+    transform translate3d(10px,-50%,0)
+@-webkit-keyframes shake
+  0%
+    transform translate3d(0,-50%,0)
+  100%
+    transform translate3d(10px,-50%,0)
+@-moz-keyframes shake
+  0%
+    transform translate3d(0,-50%,0)
+  100%
+    transform translate3d(10px,-50%,0)
 </style>
