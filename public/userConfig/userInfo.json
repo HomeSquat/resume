@@ -1,6 +1,6 @@
 {
   "basic": {
-    "name": "洞洞杰",
+    "name": "周东杰",
     "avatar": "user_avatar.png",
     "job": "前端工程师",
     "motto": "如非软弱,怎会连触手可及的幸福也要放弃?--纵力量绵薄,也要筑起通往梦想的桥梁！",
@@ -135,7 +135,7 @@
     ]
   },
   "detail": {
-    "title": "开始",
+    "title": "简历",
     "self": {
       "label": "自我介绍",
       "show": true,
