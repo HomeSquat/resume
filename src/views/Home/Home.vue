@@ -16,6 +16,10 @@
     </div>
     <!-- E 导航 -->
 
+    <!-- S 下载 -->
+    <a href="./userConfig/dong.doc" download="简历.doc" class="download iconfont iconxiazai"></a>
+    <!-- E 下载 -->
+
     <!-- S 详细信息 -->
     <div
       @click="option.basicActive = false"
@@ -220,6 +224,19 @@ export default {
       .label
         line-height 30px
         color #fff
+  .download
+    position fixed
+    right 20px
+    bottom 50px
+    z-index 99
+    width 40px
+    height 40px
+    border-radius 40px
+    background rgba(255,255,255,.2)
+    line-height 40px
+    text-align center
+    color #fff
+    cursor pointer
   .details
     width 100%
     height 100%
