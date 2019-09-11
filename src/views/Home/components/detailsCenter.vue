@@ -98,6 +98,7 @@ export default {
         const top = el.getElementsByClassName(item)[0].offsetTop;
         this.scrollList.push({
           id: item,
+          icon: this.detail[item].icon,
           label: this.detail[item].label,
           top,
         });
@@ -181,6 +182,7 @@ export default {
             color rgb(57, 179, 215)
           .value
             padding 10px 40px 10px 120px
+            line-height 30px
           .link
             color rgb(240, 173, 78)
 

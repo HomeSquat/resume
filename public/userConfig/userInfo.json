@@ -121,15 +121,15 @@
     },
     "links": [
       {
-        "icon": "csdn.png",
+        "icon": "iconcsdn",
         "url": "https://blog.csdn.net/github_37710255"
       },
       {
-        "icon": "blog.png",
+        "icon": "iconblog",
         "url": "http://blog.coderdong.cn/blog/"
       },
       {
-        "icon": "github.png",
+        "icon": "icongithub",
         "url": "https://github.com/dongdongjie"
       }
     ]
@@ -138,11 +138,13 @@
     "title": "简历",
     "self": {
       "label": "自我介绍",
+      "icon": "iconintroduction",
       "show": true,
       "content": "苹果电脑贸易(上海)有限公司近日向市场监督管理总局备案了召回计划，将自2019年6月20日起，召回部分苹果笔记本电脑MacBook Pro（Retina，15英寸，2015年中期型号）。本次召回范围内的产品发生了6起发热事件报告，可能存在燃烧风险。苹果公司目前未收到任何与该电池发热事件有关的重大财产损失或人员伤亡报告。声明：转载此文是出于传递更多信息之目的。若有来源标注错误或侵犯了您的合法权益，请作者持权属证明与本网联系，我们将及时更正、删除，谢谢。"
     },
     "learning": {
       "label": "教育经历",
+      "icon": "iconeducation",
       "show": true,
       "content": [
         {
@@ -164,6 +166,7 @@
     },
     "jobs": {
       "label": "工作经历",
+      "icon": "iconjob",
       "show": true,
       "content": [
         {
@@ -190,6 +193,7 @@
     },
     "project": {
       "label": "项目经验",
+      "icon": "iconproject",
       "show": true,
       "content": [
         {

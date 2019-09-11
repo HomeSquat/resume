@@ -10,7 +10,7 @@
           :class="[option.colorList[index],scrollIndex === index ? 'active' : '']"
           @click="navTo(item.top)"
           class="nav--item">
-        <div class="icon"></div>
+        <div :class="item.icon" class="icon iconfont"></div>
         <div class="label">{{item.label}}</div>
       </div>
     </div>
@@ -217,10 +217,14 @@ export default {
         background #f0ad4e
       .icon
         position absolute
-        top 0
-        left 0
+        top 5px
+        left 10px
         width 20px
         height 20px
+        line-height 20px
+        text-align center
+        font-size 20px
+        color #fff
       .label
         line-height 30px
         color #fff

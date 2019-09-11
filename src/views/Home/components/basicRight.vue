@@ -20,7 +20,9 @@
         v-for="(link,index) in userInfoBasic.links"
         :key="index"
         :href="link.url" target="_blank">
-        <img :src="'./userConfig/links/'+link.icon" class="external-links__item"/>
+        <span :class="link.icon" class="external-links__item iconfont"></span>
+        <!-- 我的虚拟主机对这几个图标有意见 暂时注释 -->
+        <!-- <img :src="'./userConfig/links/'+link.img" class="external-links__item"/> -->
       </a>
     </div>
  </div>
@@ -219,6 +221,8 @@ export default {
       width 20px
       height 20px
       margin 0 10px
+      font-size 20px
+      color #fff
 @keyframs shake
   0%
     transform translate3d(0,-50%,0)
