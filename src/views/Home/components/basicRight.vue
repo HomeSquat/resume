@@ -163,6 +163,7 @@ export default {
   .user
     display flex
     flex-direction column
+    justify-content space-between
     align-items center
     width 100% // 兼容ie
     .user-avatar-box
@@ -203,17 +204,16 @@ export default {
       margin 20px 0
       font-size 24px
     .user-job
-      margin 20px 0
+      margin-bottom 20px
       font-size 18px
     .user-motto
       width 100% //兼容ie
       line-height 24px
       font-size 16px
       letter-spacing 4px
-    .skill-radar
-      width 100%
-      height 220px
-      margin-top 100px
+  .skill-radar
+    width 100%
+    height 220px
   .external-links
     margin-top 20px
     text-shadow none
