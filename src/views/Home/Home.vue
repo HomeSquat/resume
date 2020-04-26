@@ -17,7 +17,7 @@
     <!-- E 导航 -->
 
     <!-- S 下载 -->
-    <a href="./userConfig/dong.doc" download="简历.doc" class="download iconfont iconxiazai"></a>
+    <a href="./userConfig/dong.doc" download="周东杰的简历.doc" class="download iconfont iconxiazai"></a>
     <!-- E 下载 -->
 
     <!-- S 详细信息 -->
